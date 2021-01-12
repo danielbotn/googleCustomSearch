@@ -13,3 +13,7 @@ export async function customSearch(search: string, apiKey: string) {
     return error;
   }
 }
+
+export function test() {
+  console.log('test');
+}
