@@ -25,7 +25,9 @@ module.exports = {
       extends: ['prettier/@typescript-eslint', 'plugin:prettier/recommended'],
       env: { browser: true, node: false },
       rules: {
-        'prettier/prettier': 'error',
+        "prettier/prettier": ["error", {
+         "endOfLine":"auto"
+       }],
       },
     },
     {
