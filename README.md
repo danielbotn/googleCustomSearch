@@ -32,6 +32,15 @@ A very simple custom search app written in Svelte
 
 - [Node and NPM](https://nodejs.org/)
 
+
+## Environment variables
+
+To run the app locally, make sure to have Inline `.env` file at the root of the project with the following variable
+
+```bash
+SVELTE_APP_API_KEY=the-api-key-goes-here
+```
+
 ## Running locally
 
 ```bash
