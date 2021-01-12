@@ -2,7 +2,7 @@
 
 ![Google Logo](https://avatars0.githubusercontent.com/u/1342004?v=3&s=96)
 
-[Click here to go to Live Demo](http://stale-acoustics.surge.sh/)
+[Click here to go to Live Demo](https://google-custom-search.vercel.app/)
 
 </div>
 
@@ -45,16 +45,8 @@ npm run env:dev
 
 ## Deployment
 
-```bash
-# Here we are using surge for deployment
-# path http://stale-acoustics.surge.sh/ --> name stale-acoustics.surge.sh
+Deployment is through continuous integration 🚀 on the master branch.  
 
-# build browserify
-browserify app.js -t [envify --DAYS_SECRET_KEY my-super-secre-key --DAYS_SECRET_PASSWORD my-super-secret-password] > bundle.js
+[Click here to go to Live Demo](https://google-custom-search.vercel.app/)
 
-# build
-npm run build
-
-# For production deployment on surge
-surge dist
-```
+[Vercel Dashboard](https://vercel.com/dashboard)
