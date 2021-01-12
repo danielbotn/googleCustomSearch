@@ -4,7 +4,7 @@
   let search: string = '';
 
   const searchApi = async (): Promise<void> => {
-    const cs = await customSearch(search);
+    const cs = await customSearch(search, process.env.SVELTE_APP_API_KEY);
   }
 </script>
 
