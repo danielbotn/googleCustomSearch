@@ -1,8 +1,22 @@
 <script lang="ts">
-  import { customSearch } from '../../api/api';
+  import axios from 'axios';
+  // import { customSearch } from '../../api/api';
   import { googleImageData } from '../../store/store';
 
   let search: string = '';
+
+  const customSearch = async (search: string, apiKey: string) => {
+  try {
+    const result = await axios({
+      method: 'get',
+      url: `https://content.googleapis.com/customsearch/v1?cx=001361074102112665899%3Ap7mybnrloug&q=${search}&searchType=image&key=${apiKey}`,
+    });
+
+    return result;
+  } catch (error) {
+    return error;
+  }
+}
 
   const searchApi = async (): Promise<void> => {
     if (search !== '') {
