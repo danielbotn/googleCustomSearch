@@ -43,12 +43,11 @@
   img {
     max-height: 380px;
   }
-
 </style>
 
 <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0, 0, 0, 0.7);">
   <div class="border border-teal-500 modal-container bg-white w-11/12 max-w-2xl mx-auto rounded shadow-lg z-50 overflow-y-auto">
-    <div class="modal-content py-4 text-left px-6">
+    <div class="modal-content py-4 text-left px-6 overflow-auto max-h-screen">
       <div class="flex justify-end">
         <div class="modal-close cursor-pointer z-50" on:click={closeModal}>
           <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
