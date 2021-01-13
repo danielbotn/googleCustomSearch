@@ -70,5 +70,5 @@ Below is the lighthouse status of this app:
 
 ## Front end frameworks compared
 
-- [Arcticle on Medium](https://medium.com/dailyjs/a-realworld-comparison-of-front-end-frameworks-2020-4e50655fe4c1) Article on Medium
-- [Real world project](https://github.com/gothinkster/realworld) An overview of a lot of stacks.
+- [Arcticle on Medium](https://medium.com/dailyjs/a-realworld-comparison-of-front-end-frameworks-2020-4e50655fe4c1)
+- [Real world project](https://github.com/gothinkster/realworld)
