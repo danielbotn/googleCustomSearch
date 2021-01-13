@@ -59,3 +59,16 @@ Deployment is through continuous integration 🚀 on the master branch.
 [Click here to go to Live Demo](https://google-custom-search.vercel.app/)
 
 [Vercel Dashboard](https://vercel.com/dashboard)
+
+## Lighthouse status
+
+Svelte is generally very fast compared to other frameworks.  
+Below is the lighthouse status of this app:
+
+![Lighthouse](https://i.ibb.co/CBvWL1L/lighthouse.png)
+
+
+## Front end frameworks compared
+
+- [Arcticle on Medium](https://medium.com/dailyjs/a-realworld-comparison-of-front-end-frameworks-2020-4e50655fe4c1) Article on Medium
+- [Real world project](https://github.com/gothinkster/realworld) An overview of a lot of stacks.
