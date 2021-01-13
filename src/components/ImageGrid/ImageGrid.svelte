@@ -26,18 +26,27 @@
       images = [];
     }
    });
+
+  const checkURL = (url: string) => {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+  }
 </script>
 
 <div class="px-4 sm:px-8 lg:px-16 xl:px-20 mx-auto">
   <section id="photos" class="my-5 grid grid-cols-1 md:grid-cols-4 gap-4">
     <template>
       {#each images as image}
-        {#if image.link.includes('x-raw-image') === false}
-          <img class="w-full h-64 object-cover hover:opacity-75" src={image.link} alt={image.title} on:click={() => clickOnImage(image)} />
+        {#if image.link.includes('x-raw-image') === false && checkURL(image.link)}
+          <img 
+            class="w-full h-64 object-cover hover:opacity-75" 
+            src={image.link} 
+            alt={image.title} 
+            on:click={() => clickOnImage(image)} 
+          />
         {/if}
       {/each}
     </template>
-    </section>
+  </section>
 </div>
 
 {#if modalOpen}
