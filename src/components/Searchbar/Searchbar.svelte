@@ -39,6 +39,7 @@
     type="search"
     name="search"
     placeholder="Search"
+    aria-label="Search"
     bind:value="{search}"
     on:keypress={enter}
   />
@@ -46,6 +47,7 @@
     type="submit"
     class="absolute right-0 top-0 mt-5 mr-4"
     on:click={searchApi}
+    aria-label="search images"
   >
     <svg
       class="text-gray-600 h-4 w-4 fill-current"
