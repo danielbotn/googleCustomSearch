@@ -1,11 +1,15 @@
 <script lang="ts">
+  import axios from 'axios';
+  import InfiniteLoading from 'svelte-infinite-loading';
   import Modal from '../Modal/Modal.svelte';
-  import { googleImageData } from '../../store/store';
+  import { googleImageData, searchWord } from '../../store/store';
+  import { get } from 'svelte/store';
   import type { IImage } from '../../interfaces/google';
   
   export let images: IImage[] = [];
   let modalOpen: boolean = false;
   let modalData: IImage = null;
+  let startNumb: number = 11;
 
   const closeModal = () => {
     modalOpen = !modalOpen;
@@ -30,6 +34,36 @@
   const checkURL = (url: string) => {
     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
   }
+
+  const customSearch = async (search: string, apiKey: string) => {
+    try {
+      const result = await axios({
+        method: 'get',
+        url: `https://content.googleapis.com/customsearch/v1?cx=001361074102112665899%3Ap7mybnrloug&q=${search}&num=10&start=${startNumb}&searchType=image&key=${apiKey}`,
+      });
+
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async function infiniteHandler({ detail: { loaded, complete } }) {
+    const searchValue = get(searchWord);
+    let tmpArr = [];
+    const cm = await customSearch(searchValue, process.env.SVELTE_APP_API_KEY);
+    if(cm.data && cm.data.items) {
+      const imgData = cm.data.items;
+      imgData.forEach((element: IImage, index: number) => {
+        tmpArr[index] = element;
+      });
+      images = [...images, ...tmpArr];
+      startNumb += 10;
+      loaded();
+    } else {
+      complete();
+    }
+	}
 </script>
 
 <div class="px-4 sm:px-8 lg:px-16 xl:px-20 mx-auto">
@@ -51,4 +85,8 @@
 
 {#if modalOpen}
   <Modal on:closeModal={closeModal} modalData={modalData} />
+{/if}
+
+{#if images.length > 0 }
+  <InfiniteLoading on:infinite={infiniteHandler} />
 {/if}
