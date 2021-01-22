@@ -52,6 +52,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "sirv-cli": "^1.0.0",
-    "svelte-environment-variables": "^1.0.3"
+    "svelte-environment-variables": "^1.0.3",
+    "svelte-infinite-loading": "^1.3.5"
   }
 }
