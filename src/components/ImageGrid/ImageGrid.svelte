@@ -82,7 +82,7 @@
   }
 
   async function infiniteHandler({ detail: { loaded, complete } }) {
-    let tmp = [];
+    let tmp: IImage[] = [];
     const searchValue = get(searchWord);
     let tmpArr = [];
     const cm = await customSearch(searchValue, process.env.SVELTE_APP_API_KEY);
