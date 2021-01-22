@@ -9,7 +9,10 @@
   export let images: IImage[] = [];
   let modalOpen: boolean = false;
   let modalData: IImage = null;
-  let startNumb: number = 11;
+  let startNumb: number = 1;
+  
+  let infiniteId = +new Date();
+  let tmpSearchWord: string = '';
 
   const closeModal = () => {
     modalOpen = !modalOpen;
@@ -18,13 +21,43 @@
   const clickOnImage = (image: IImage) => {
     modalData = image;
     modalOpen = true;
-  }
+  };
 
+  searchWord.subscribe(value => {
+    if (value !== null && tmpSearchWord !== null) {
+      if (value !== tmpSearchWord) {
+        images = [];
+        infiniteId += 1;
+        startNumb = 1;
+      }
+      tmpSearchWord = value;
+    }
+   });
+
+  // TODO remove duplicate pictures
+  const removeDuplicates = (array: IImage[]) => {
+    const filteredArr = array.reduce((acc, current) => {
+      const x = acc.find(item => item.title === current.title);
+      if (!x) {
+        return acc.concat([current]);
+      } else {
+        return acc;
+      }
+    }, []);
+    return filteredArr;
+  };
+  
   googleImageData.subscribe(value => {
+    let tmp = [];
     if (value && value.data && value.data.items) {
+      images = [];
+      infiniteId += 1;
+      startNumb = 1;
       value.data.items.forEach((element: IImage, index: number) => {
-        images[index] = element;
+        tmp[index] = element;
       });
+      const cleanArr: IImage[] = removeDuplicates(tmp);
+      images = [...cleanArr];
     }
     if (value === null) {
       images = [];
@@ -49,6 +82,7 @@
   }
 
   async function infiniteHandler({ detail: { loaded, complete } }) {
+    let tmp = [];
     const searchValue = get(searchWord);
     let tmpArr = [];
     const cm = await customSearch(searchValue, process.env.SVELTE_APP_API_KEY);
@@ -57,7 +91,9 @@
       imgData.forEach((element: IImage, index: number) => {
         tmpArr[index] = element;
       });
-      images = [...images, ...tmpArr];
+      tmp = [...images, ...tmpArr];
+      const cleanArr: IImage[] = removeDuplicates(tmp);
+      images = [...cleanArr];
       startNumb += 10;
       loaded();
     } else {
@@ -88,5 +124,5 @@
 {/if}
 
 {#if images.length > 0 }
-  <InfiniteLoading on:infinite={infiniteHandler} />
+  <InfiniteLoading on:infinite={infiniteHandler} identifier={infiniteId} />
 {/if}

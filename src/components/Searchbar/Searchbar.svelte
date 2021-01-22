@@ -8,7 +8,7 @@
     try {
       const result = await axios({
         method: 'get',
-        url: `https://content.googleapis.com/customsearch/v1?cx=001361074102112665899%3Ap7mybnrloug&q=${search}&num=10&start=15&searchType=image&key=${apiKey}`,
+        url: `https://content.googleapis.com/customsearch/v1?cx=001361074102112665899%3Ap7mybnrloug&q=${search}&num=10&start=1&searchType=image&key=${apiKey}`,
       });
 
       return result;
